@@ -6,7 +6,7 @@ pub struct Release {
 
 #[tauri::command]
 pub async fn get_latest_release() -> Release {
-  let url = "wait";
+  let url = "https://api.github.com/repos/Xexplotion/Dexcord/releases/latest";
   let client = reqwest::Client::new();
   let response = client
     .get(url)

@@ -79,7 +79,7 @@ async function showSettings() {
     const { invoke } = window.__TAURI__
     const settingsRegion = document.querySelector('div[class*=contentRegion] div[class*=contentColumn] div')
     const settingsHTML = await invoke('get_settings')
-
+    
     settingsRegion.innerHTML = settingsHTML
 
 
