@@ -15,20 +15,20 @@ pub fn get_html(dir: &str) -> String {
 
 #[tauri::command]
 pub fn get_index() -> String {
-  get_html("html/index.html")
+  get_html("./html/index.html")
 }
 
 #[tauri::command]
 pub fn get_settings() -> String {
-  get_html("html/settings.html")
+  get_html("./html/settings.html")
 }
 
 #[tauri::command]
 pub fn get_top_bar() -> String {
-  get_html("html/top.html")
+  get_html("./html/top.html")
 }
 
 #[tauri::command]
 pub fn get_notif() -> String {
-  get_html("html/notification.html")
+  get_html("./html/notification.html")
 }

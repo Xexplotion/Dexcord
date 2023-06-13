@@ -79,7 +79,7 @@ async function showSettings() {
     const { invoke } = window.__TAURI__
     const settingsRegion = document.querySelector('div[class*=contentRegion] div[class*=contentColumn] div')
     const settingsHTML = await invoke('get_settings')
-    
+
     settingsRegion.innerHTML = settingsHTML
 
 
@@ -112,6 +112,40 @@ function initOnclickHandlers() {
 }
 
 /**
+ * Show notification
+ */
+async function showNotification(title, body) {
+    const { invoke } = window.__TAURI__
+    const notifHtml = await invoke('get_notif')
+    const notif = document.createElement('div')
+    notif.innerHTML = notifHtml
+
+    const inner = notif.querySelector('#dexcord_notif')
+
+    inner.style.top = '-100%'
+    inner.style.transition = 'all 0.5s ease-in-out'
+
+    inner.querySelector('#notif_title').innerHTML = title
+    inner.querySelector('#notif_body').innerHTML = body
+
+    const inst = document.body.appendChild(notif)
+
+    // Move into view
+    setTimeout(() => {
+        inner.style.top = '5%'
+    }, 100)
+
+    // After 4 seconds, move out of view and remove
+    setTimeout(() => {
+        inner.style.top = '-100%'
+        setTimeout(() => {
+            inst.remove()
+        }, 500)
+    }, 4000)
+}
+
+
+/**
  * Check for updates
  */
 async function checkForUpdates() {
@@ -123,6 +157,6 @@ async function checkForUpdates() {
     const latestNum = latest.tag_name.replace(/[a-z]/gi, '').trim()
 
     if (version !== latestNum) {
-        showNotification('Update Available', `<a href="${latest.link}">Dexcord v${latestNum}</a> is now available!`)
+        showNotification('Update Available', `<a href="${latest.link}">Dexcord v${latestNum}</a> is now available! You are currently running Dexcord v${version}`)
     }
 }

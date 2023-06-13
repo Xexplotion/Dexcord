@@ -3,11 +3,11 @@
     "beforeDevCommand": "",
     "beforeBuildCommand": "",
     "devPath": "https://discord.com/app",
-    "distDir": "../src",
+    "distDir": "https://discord.com/app",
     "withGlobalTauri": true
   },
   "package": {
-    "productName": "dexcord",
+    "productName": "Dexcord",
     "version": "0.0.1"
   },
   "tauri": {
